@@ -1,0 +1,84 @@
+% Lenguajes de Programación 2019-1
+% Plantilla para reportes de laboratorio.
+
+\documentclass[spanish,12pt,letterpaper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+\usepackage{listings}
+\usepackage{dsfont}
+\usepackage{lscape}
+\usepackage{multirow}
+\title{Actividad II}
+\author{Emiliano Galeana Araujo}
+\affil{Facultad de Ciencias, UNAM}
+\date{Fecha de entrega: 18 de Febrero de 2019}
+
+\begin{document}
+
+\maketitle
+
+Lo primero que hice fue escribir las pistas indivuales, por ejemplo El inglés
+vive enn la casa roja, etc. Luego a todas las demás casillas les ponía la
+negación, por ejemplo siguiendo la pista anterior, sabríamos que el japonés,
+noruego, español ni ucraniano tendrían la casa roja.\\
+Luego usé las pistas ``dobles'' como la de en la casa verde se toma café, aún no
+tenía quién tenía la casa verde, pero sabía que la roja no tomaba café, así lo
+mismo para las demás pistas.\\
+Finalmente con las pistas ``triples'' lo que hice fue ubicar por ejemplo que el
+noruego vive en la primer casa y es de color amarilla.\\
+Luego intenté hacer resoluciones con algunas pistas para ir rellenando mi
+cuadrícula, e ir avanzando; Pero hubo una parte donde me trabé, ya no tenía otra
+pista u algo que me dijera. Analicé los cuadros faltantes y vi que las bebidas
+estaban casi completas, noté que el inglés tenía todas sus bebidas negadas, así
+que solo había dos opciones, o bebe leche o bebe jugo. Supuse que bebe leche y
+así fui rellenando los demás cuadros; Sabía que si llegaba a una contradicción,
+por ejemplo (No me acuerdo exactamente de la cuadrícula) que si el inglés bebía
+leche, me llevaba a X, y X a que el ucraniano fumaba old gold es una
+contradicción.\\
+Afortunadamente estuvo bien la suposición y el inglés si bebe leche, y no llegué
+a ninguna y acabé el acertijo.\\\\
+Notas: No usé la página que nos diste.\\\\
+Respuestas:\\
+\begin{itemize}
+\item El noruego bebe agua.
+\item La zebra pertenece al japonés.
+\end{itemize}
+\begin{table}[htbp]
+  \begin{center}
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+      & Casa & Mascota & Bebida & Cigarros & Posición \\ \hline
+      & \underline{roja} &$\neg$ perro &$\neg$ café &$\neg$ kools &$\neg$ 1\\ 
+      &$\neg$ verde &$\neg$ caballo &$\neg$ té &$\neg$ parliaments &$\neg$ 2\\ 
+      Inglés    &$\neg$ azul &$\neg$ zebra &$\neg$ agua &$\neg$ Lucky &\underline{3} \\
+      &$\neg$ amarilla &\underline{caracoles} &\underline{leche} &\underline{old gold} &$\neg$ 4 \\ 
+      &$\neg$ marfil &$\neg$ zorro &$\neg$ jugo &$\neg$ chesterfields &$\neg$ 5 \\ \hline
+      &$\neg$ roja &$\neg$ perro &$\neg$ te & \underline{parliaments} &$\neg$ 1 \\
+      &$\neg$ amarilla &$\neg$ caracoles &$\neg$ jugo &$\neg$ Lucky &$\neg$ 3 \\ 
+      Japonés   &\underline{verde} &$\neg$ caballo &$\neg$ agua &$\neg$ kools &\underline{5} \\
+      &$\neg$ azul &$\neg$ zorro &\underline{café} &$\neg$ old gold&$\neg$ 2\\
+      &$\neg$ marfil &\underline{zebra} &$\neg$leche &$\neg$ chesterfields &$\neg$ 4\\ \hline
+      &$\neg$ roja &$\neg$ perro &$\neg$ té &$\neg$ parliaments &\underline{1}\\
+      &$\neg$ azul&$\neg$ caballo &$\neg$ leche &\underline{kools} &$\neg$2\\
+      Noruego   &$\neg$ verde &$\neg$ zebra &$\neg$ café &$\neg$ Lucky &$\neg$3\\
+      &$\neg$ marfil &$\neg$ caracoles &$\neg$ jugo &$\neg$ chesterfields &$\neg$ 4\\
+      &\underline{Amarilla} &\underline{zorro} &\underline{agua} &$\neg$ old gold &$\neg$ 5\\\hline
+      &$\neg$ roja &\underline{perro} &$\neg$ té &$\neg$ old gold &$\neg$ 1\\
+      &$\neg$ amarilla &$\neg$zorro &$\neg$ agua &$\neg$ parliaments &$\neg$ 2\\
+      Español   &$\neg$ azul &$\neg$ caracoles &\underline{jugo} &$\neg$ kools &$\neg$ 3\\
+      &$\neg$ verde &$\neg$ zebra &$\neg$ leche &\underline{Lucky} &\underline{4}\\
+      &\underline{marfil} &$\neg$ caballo&$\neg$ café&$\neg$ chesterfields&$\neg$ 5\\\hline
+      &$\neg$ roja &$\neg$ perro &\underline{té} &$\neg$ Lucky &$\neg$ 3\\
+      &$\neg$ verde&\underline{caballo} &$\neg$ agua &$\neg$ parliaments &$\neg$ 1\\
+      Ucranuano &$\neg$ amarilla &$\neg$ zebra &$\neg$café &$\neg$ kools &\underline{2}\\
+      &$\neg$ marfil &$\neg$ caracoles &$\neg$ jugo&$\neg$ old gold &$\neg$ 4\\
+      &\underline{azul} &$\neg$ zorro &$\neg$ leche&\underline{chesterfields}&$\neg$ 5\\\hline
+    \end{tabular}
+    \caption{Cuadro de valores del acertijo.}
+    \label{tabla:sencilla}
+  \end{center}
+\end{table}
+
+\end{document}
