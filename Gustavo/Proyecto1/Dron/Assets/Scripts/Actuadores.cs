@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -75,13 +75,14 @@ public class Actuadores : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 
-    public void Limpiar(GameObject basura){
+    public void Limpiar(GameObject basura) {
         basura.SetActive(false);
         sensor.SetTocandoBasura(false);
         sensor.SetCercaDeBasura(false);
     }
 
-    public void CargarBateria(){
+    public void CargarBateria() {
         bateria.Cargar();
     }
+
 }

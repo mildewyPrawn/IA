@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +15,8 @@ public class Sensores : MonoBehaviour
     private bool tocandoBasura; // Bandera auxiliar para mantener el estado en caso de tocar basura
     private bool cercaBasura; // Bandera auxiliar para mantener el estado en caso de estar cerca de una basura
 
+    private bool tocandoEdificio; // Bandera para tocar edificios.
+
     // Asignaciones de componentes
     void Start(){
         radar = GameObject.Find("Radar").gameObject.GetComponent<Radar>();
@@ -29,24 +31,26 @@ public class Sensores : MonoBehaviour
     // La mayoría de los métodos es para asignar banderas/variables de estado.
 
     void OnCollisionEnter(Collision other){
-        if(other.gameObject.CompareTag("Pared")){
+        if(other.gameObject.CompareTag("Pared"))
             tocandoPared = true;
-        }
+        if (other.gameObject.CompareTag("Edificio"))
+            tocandoEdificio = true;
     }
 
     void OnCollisionStay(Collision other){
-        if(other.gameObject.CompareTag("Pared")){
+        if(other.gameObject.CompareTag("Pared"))
             tocandoPared = true;
-        }
-        if(other.gameObject.CompareTag("BaseDeCarga")){
+        if(other.gameObject.CompareTag("BaseDeCarga"))
             actuador.CargarBateria();
-        }
+        if (other.gameObject.CompareTag("Edificio"))
+            tocandoEdificio = true;
     }
 
     void OnCollisionExit(Collision other){
-        if(other.gameObject.CompareTag("Pared")){
+        if(other.gameObject.CompareTag("Pared"))
             tocandoPared = false;
-        }
+        if (other.gameObject.CompareTag("Edificio"))
+            tocandoEdificio = false;
     }
 
     void OnTriggerEnter(Collider other){
@@ -85,6 +89,10 @@ public class Sensores : MonoBehaviour
         return rayo.FrenteAPared();
     }
 
+    public bool TocandoEdificio() {
+        return tocandoEdificio;
+    }
+    
     public bool TocandoBasura(){
         return tocandoBasura;
     }

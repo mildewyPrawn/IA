@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,6 @@ public class Rayo : MonoBehaviour
     void Update(){
         // Se muestra el rayo únicamente en la pantalla de diseño (Scene)
         Debug.DrawLine(transform.position, transform.position + (transform.forward * longitudDeRayo), Color.blue);
-        Debug.DrawLine(transform.position, transform.position + (transform.right * longitudDeRayo), Color.red);
     }
 
     void FixedUpdate(){
@@ -33,6 +32,4 @@ public class Rayo : MonoBehaviour
     public bool FrenteAPared(){
         return frenteAPared;
     }
-
-    //TODO: acá se podría poner una bandera de a la derecha de la pared
 }

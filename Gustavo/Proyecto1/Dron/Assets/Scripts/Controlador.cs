@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,9 @@ public class Controlador : MonoBehaviour
     // Idealmente sólo se requiere de sensores y actuadores para programar el comportamiento
     private Actuadores actuador;
     private Sensores sensor;
+
+    // Variables globales porque para algo han de servir
+    private float maxAltura;
 
     // Asignaciones de componentes
     void Start(){
@@ -25,6 +28,22 @@ public class Controlador : MonoBehaviour
         // A continuación se muestran ejemplos de uso de actuadores y sensores
         // para ser utilizados de manera manual (por una persona):
 
+        if (sensor.TocandoPared()) {
+            actuador.Detener();
+            actuador.GirarDerecha();
+            actuador.Detener();
+            actuador.GirarDerecha();
+        } else {
+            actuador.Adelante();
+        }
+
+        if (sensor.TocandoEdificio()) {
+            actuador.Ascender();
+        } else {
+            actuador.Adelante();
+        }
+
+        
         if(Input.GetKey(KeyCode.I))
             actuador.Ascender();
         if(Input.GetKey(KeyCode.K))
@@ -32,8 +51,6 @@ public class Controlador : MonoBehaviour
         if(!Input.GetKey(KeyCode.I) && !Input.GetKey(KeyCode.K))
             actuador.Flotar();
 
-        if(Input.GetAxis("Vertical") > 0)
-            actuador.Adelante();
         if(Input.GetAxis("Vertical") < 0)
             actuador.Atras();
 
@@ -52,11 +69,13 @@ public class Controlador : MonoBehaviour
             Debug.Log("Tocando basura!");
             actuador.Limpiar(sensor.GetBasura());
         }
+
         if(sensor.TocandoPared())
             Debug.Log("Tocando pared!");
 
         if(sensor.CercaDeBasura())
             Debug.Log("Cerca de una basura!");
+
         if(sensor.CercaDePared())
             Debug.Log("Cerca de una pared!");
 
