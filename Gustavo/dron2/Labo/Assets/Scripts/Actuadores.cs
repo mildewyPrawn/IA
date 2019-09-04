@@ -62,15 +62,16 @@ public class Actuadores : MonoBehaviour
 
     public void Avanzar(bool movedFront, bool movedBack) {
         
-        if(movedBack){
+        if(!movedBack){
             Adelante();
             Debug.Log("C");
-        }
-            if(movedFront){
+        }if(movedBack){
             Atras();
             Debug.Log("D");
+                    }
+            
         
-        }
+       
 
     }
 
@@ -124,7 +125,6 @@ public class Actuadores : MonoBehaviour
     public void front(bool movedFront){
         if(!movedFront){
         transform.Translate(0,0,1);
-      
         return;
         }else{
             

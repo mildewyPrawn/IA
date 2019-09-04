@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Controlador.cs" />
      <Compile Include="Assets\Scripts\Radar.cs" />
      <Compile Include="Assets\Scripts\Rayo.cs" />
+     <Compile Include="Assets\Scripts\RayoAtras.cs" />
      <Compile Include="Assets\Scripts\Sensores.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/home/diego/Documentos/IA/IA/Gustavo/dron2/Labo/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

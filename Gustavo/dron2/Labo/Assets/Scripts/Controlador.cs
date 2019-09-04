@@ -42,25 +42,26 @@ public class Controlador : MonoBehaviour
         if (sensor.FrenteAPared()) {
             actuador.Detener();
             actuador.back(movedBack);
+            Debug.Log(movedBack);
+            Debug.Log(movedFront);    
             movedFront=false;
             movedBack=true;
             actuador.Detener();
             actuador.Flotar();
-            
             actuador.Avanzar(movedFront, movedBack);
-            Debug.Log(direccion);  
+
            return;
         } else if(sensor.ParedAtras()){
             actuador.Detener();
             actuador.front(movedFront);
+            Debug.Log(movedBack);
+            Debug.Log(movedFront);    
+            movedBack=true;
             movedFront=false;
-            
-              movedFront=true;
             actuador.Detener();
             actuador.Flotar();
-           
             actuador.Avanzar(movedFront, movedBack);
-            Debug.Log(direccion);
+
             return;
         }else if (sensor.TocandoEdificio()) {
             actuador.Ascender();
