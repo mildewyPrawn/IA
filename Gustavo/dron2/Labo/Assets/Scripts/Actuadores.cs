@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Actuadores : MonoBehaviour
 {
-    private Rigidbody rb; // Componente para simular acciones físicas realistas
+    public Rigidbody rb; // Componente para simular acciones físicas realistas
     private Bateria bateria; // Componente adicional (script) que representa la batería
     private Sensores sensor; // Componente adicional (script) para obtener información de los sensores
 
@@ -15,12 +15,13 @@ public class Actuadores : MonoBehaviour
     private float rotateAmountByKeys = 2.5f; // Auxiliar para el cálculo de rotación
     private float rotationYVelocity; // Escalar (calculado) para indicar velocidad de rotación
     private float sideMovementAmount = 250.0f; // Escalar para indicar velocidad de movimiento lateral
-
+  
     // Asignaciones de componentes
     void Start(){
         rb = GetComponent<Rigidbody>();
         sensor = GetComponent<Sensores>();
         bateria = GameObject.Find("Bateria").gameObject.GetComponent<Bateria>();
+
     }
 
     // ========================================
@@ -55,11 +56,21 @@ public class Actuadores : MonoBehaviour
     }
 
     public void Girar180() {
-        rb.rotation = Quaternion.Euler(new Vector3(rb.rotation.x, rb.rotation.y + 180, rb.rotation.z));
+        rb.rotation = Quaternion.Euler(new Vector3(rb.rotation.x, rb.rotation.y + 179, rb.rotation.z));
+        return;
     }
 
-    public void Avanzar() {
-        transform.position += new Vector3 (3 * Time.deltaTime, 0, 0);
+    public void Avanzar(bool movedFront, bool movedBack) {
+        
+        if(movedBack){
+            Adelante();
+            Debug.Log("C");
+        }
+            if(movedFront){
+            Atras();
+            Debug.Log("D");
+        
+        }
 
     }
 
@@ -100,5 +111,23 @@ public class Actuadores : MonoBehaviour
         this.Descender();
         this.CargarBateria();
     }
-
+    public void back(bool movedBack){
+        if(!movedBack){
+        transform.Translate(0,0,-1);
+        Debug.Log("a");
+        
+        return;
+        }else{
+            Debug.Log("B");
+        }
+    }
+    public void front(bool movedFront){
+        if(!movedFront){
+        transform.Translate(0,0,1);
+      
+        return;
+        }else{
+            
+        }
+    }
 }

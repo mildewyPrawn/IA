@@ -7,6 +7,7 @@ public class Sensores : MonoBehaviour
     private GameObject basura; // Auxiliar para guardar referencia al objeto
     private Radar radar; // Componente auxiliar (script) para utilizar radar esférico
     private Rayo rayo; // Componente auxiliar (script) para utilizar rayo lineal
+    private RayoAtras rayoAtras;
     private Bateria bateria; // Componente adicional (script) que representa la batería
     private Actuadores actuador; // Componente adicional (script) para obtener información de los ac
 
@@ -20,9 +21,10 @@ public class Sensores : MonoBehaviour
     // Asignaciones de componentes
     void Start(){
         radar = GameObject.Find("Radar").gameObject.GetComponent<Radar>();
-        rayo = GameObject.Find("Rayo").gameObject.GetComponent<Rayo>();
+        rayo = GameObject.Find("Rayo").gameObject.GetComponent<Rayo>(); 
         bateria = GameObject.Find("Bateria").gameObject.GetComponent<Bateria>();
         actuador = GetComponent<Actuadores>();
+        rayoAtras = GameObject.Find("RayoAtras").gameObject.GetComponent<RayoAtras>();
     }
 
     // ========================================
@@ -88,7 +90,9 @@ public class Sensores : MonoBehaviour
     public bool FrenteAPared(){
         return rayo.FrenteAPared();
     }
-
+    public bool ParedAtras(){
+        return rayoAtras.HayParedAtras();
+    }
     public bool TocandoEdificio() {
         return tocandoEdificio;
     }
@@ -100,7 +104,9 @@ public class Sensores : MonoBehaviour
     public bool FrenteAEdificio(){
         return rayo.FrenteAEdificio();
     }    
-    
+    public bool EdificioAtras(){
+        return rayoAtras.HayEdificioAtras();
+    }
     public bool TocandoBasura(){
         return tocandoBasura;
     }
@@ -129,5 +135,8 @@ public class Sensores : MonoBehaviour
 
     public void SetCercaDeBasura(bool value){
         radar.setCercaDeBasura(value);
+    }
+    public void ParedEvitada(){
+        rayo.ParedEvitada();
     }
 }
