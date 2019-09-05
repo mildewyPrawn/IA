@@ -8,6 +8,11 @@ TagManager:
   - Pared
   - BaseDeCarga
   - Edificio
+  - Pared1
+  - ParedNorte
+  - ParedSur
+  - ParedOeste
+  - ParedEste
   layers:
   - Default
   - TransparentFX

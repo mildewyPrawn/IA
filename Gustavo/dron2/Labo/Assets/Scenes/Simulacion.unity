@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -206,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182759742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 3.62, z: 6.1757812}
+  m_LocalPosition: {x: -4.5, y: 3.62, z: 6.1757812}
   m_LocalScale: {x: 2.0693, y: 10.245497, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -592,8 +592,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851621236}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.15, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.2, z: 0.2}
   m_LocalScale: {x: 1, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 1902013075}
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 943048454}
   m_Layer: 0
   m_Name: Pared (1)
-  m_TagString: Pared
+  m_TagString: ParedNorte
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1069,8 +1069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eeaea8df69ac5cc899e5c57b3f16be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bateria: 60
-  capacidadMaximaBateria: 120
+  bateria: 20
+  capacidadMaximaBateria: 30
   velocidadDeCarga: 5
 --- !u!1 &1346625708
 GameObject:
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 1346625710}
   m_Layer: 0
   m_Name: Pared (3)
-  m_TagString: Pared
+  m_TagString: ParedEste
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1283,7 +1283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436615185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: -0.7}
   m_LocalScale: {x: 2, y: 0.15, z: 2}
   m_Children: []
   m_Father: {fileID: 1466408151}
@@ -1380,6 +1380,7 @@ Transform:
   - {fileID: 1881794751}
   - {fileID: 1436615186}
   - {fileID: 1346625709}
+  - {fileID: 1926355488}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1397,7 +1398,7 @@ GameObject:
   - component: {fileID: 1565347399}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1685,7 +1686,7 @@ GameObject:
   - component: {fileID: 1881794748}
   m_Layer: 0
   m_Name: Pared (2)
-  m_TagString: Pared
+  m_TagString: ParedOeste
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1818,6 +1819,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affd3433e96b381b19936d68d49dcaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cargaX: 0
+  cargaY: 0
+  cargaZ: 0
+  lastX: 0
+  lastY: 0
+  lastZ: 0
 --- !u!54 &1902013077
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1858,6 +1865,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba189072d89867ff8e1aa317f683460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  CargaX: 0
+  CargaY: 0
+  CargaZ: 0
+  lastX: 0
+  lastY: 0
+  lastZ: 0
+--- !u!1 &1926355487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1926355488}
+  - component: {fileID: 1926355491}
+  - component: {fileID: 1926355490}
+  - component: {fileID: 1926355489}
+  m_Layer: 0
+  m_Name: Pared (4)
+  m_TagString: ParedSur
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1926355488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926355487}
+  m_LocalRotation: {x: 0.7071068, y: 5.231036e-10, z: -4.6565474e-10, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 15, z: -14.1}
+  m_LocalScale: {x: 30, y: 1, z: 30.000025}
+  m_Children: []
+  m_Father: {fileID: 1466408151}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 90, y: -180, z: -180}
+--- !u!65 &1926355489
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926355487}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1926355490
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926355487}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0ac8b2a931bc74437897d5eb1e72f911, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1926355491
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926355487}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &2052177729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8589885789789592836, guid: 82d4061087a07c4a7ae040b3ccee15d3,
