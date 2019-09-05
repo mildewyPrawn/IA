@@ -44,35 +44,10 @@ public class Controlador : MonoBehaviour
 
         // El agente no realiza ninguna acción si no tiene batería
         if(sensor.Bateria() <= actuador.bateria.bateriaMinima) {
-          Debug.Log("jessssss");
-          if (!actuador.bateria.cargando) {
-            Debug.Log("Naomiiiiiii");
+
             actuador.Detener();
-            actuador.setLastX();
-
-            actuador.setLastY();
-            actuador.setLastZ();
-
-            actuador.bateria.cargando = true;
-          }
-
-
-            //ultimaPosicion = sensor.Ubicacion();
             actuador.goTo(cargaX, cargaY, cargaZ);
-            //actuador.VeACargar(cargaX, cargaY, cargaZ,
-            //actuador.getLastX(),actuador.getLastY(),actuador.getLastZ());
-            //actuador.goTo(actuador.getLastX(),actuador.getLastY(),actuador.getLastZ());
-            //Debug.Log(ultimaPosicion);
-
             return;
-        }
-
-        if (actuador.bateria.cargando && sensor.Bateria() > actuador.bateria.capacidadMaximaBateria -2)
-        {
-          actuador.bateria.cargando = false;
-
-          actuador.goTo(actuador.getLastX(),actuador.getLastY(),actuador.getLastZ());
-
         }
 
         // A continuación se muestran ejemplos de uso de actuadores y sensores
@@ -90,19 +65,22 @@ public class Controlador : MonoBehaviour
             Debug.Log("EEdiifiiciioo");
         } else {
             actuador.Adelante();
-            Debug.Log("Naadaa");
+            Debug.Log("Naadaa");   
         }
-
         actuador.Flotar(); //siempre flota
+        actuador.setLastX();
+        actuador.setLastY();
+        actuador.setLastZ();
     }
+
 
 
     void Girar180() {
-      if(actuador.HayPared()){
-      actuador.Detener();
-      actuador.Girar180();
-    }else{
-      actuador.Adelante();
-    }
+        if(actuador.HayPared()){
+            actuador.Detener();
+            actuador.Girar180();
+        }else{
+            actuador.Adelante();
+        }
     }
 }

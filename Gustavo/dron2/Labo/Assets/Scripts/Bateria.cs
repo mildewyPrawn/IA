@@ -6,7 +6,7 @@ using UnityEngine;
 // Dicha batería se descarga constantemente a menos que se utilize un método para recargar
 public class Bateria : MonoBehaviour
 {
-    public float bateriaMinima = 15;
+    public float bateriaMinima = 5;
     public float bateria; // Esta cifra es equivalente a los segundos activos de la batería
     public float capacidadMaximaBateria; // Indica la capacidad máxima de la batería
     public float velocidadDeCarga; // Escalar para multiplicar la velocidad de carga de la batería

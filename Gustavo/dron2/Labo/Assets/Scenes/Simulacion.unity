@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1069,9 +1069,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eeaea8df69ac5cc899e5c57b3f16be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bateriaMinima: 15
   bateria: 20
-  capacidadMaximaBateria: 30
+  capacidadMaximaBateria: 10000
   velocidadDeCarga: 5
+  cargando: 0
 --- !u!1 &1346625708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1827,7 @@ MonoBehaviour:
   lastX: 0
   lastY: 0
   lastZ: 0
+  cargando: 0
 --- !u!54 &1902013077
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1866,6 +1869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  bateria: {fileID: 0}
   CargaX: 0
   CargaY: 0
   CargaZ: 0

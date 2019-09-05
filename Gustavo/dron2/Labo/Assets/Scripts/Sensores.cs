@@ -12,8 +12,8 @@ public class Sensores : MonoBehaviour
 
     private bool tocandoParedNorte;
     private bool tocandoParedSur;
-     private bool tocandoParedEste;
-     private bool tocandoParedOeste;// Bandera auxiliar para mantener el estado en caso de tocar pared
+    private bool tocandoParedEste;
+    private bool tocandoParedOeste;// Bandera auxiliar para mantener el estado en caso de tocar pared
     private bool cercaPared; // Bandera auxiliar para mantener el estado en caso de estar cerca de una pared
     private bool tocandoBasura; // Bandera auxiliar para mantener el estado en caso de tocar basura
     private bool cercaBasura; // Bandera auxiliar para mantener el estado en caso de estar cerca de una basura
@@ -36,26 +36,25 @@ public class Sensores : MonoBehaviour
     void OnCollisionEnter(Collision other){
         if(other.gameObject.CompareTag("ParedNorte"))
             tocandoParedNorte = true;
-            if(other.gameObject.CompareTag("ParedSur"))
-                tocandoParedSur = true;
-            if(other.gameObject.CompareTag("ParedEste"))
-                tocandoParedEste = true;
-            if(other.gameObject.CompareTag("ParedOeste"))
-                tocandoParedOeste = true;
-
+        if(other.gameObject.CompareTag("ParedSur"))
+            tocandoParedSur = true;
+        if(other.gameObject.CompareTag("ParedEste"))
+            tocandoParedEste = true;
+        if(other.gameObject.CompareTag("ParedOeste"))
+            tocandoParedOeste = true;
         if (other.gameObject.CompareTag("Edificio"))
             tocandoEdificio = true;
     }
 
     void OnCollisionStay(Collision other){
-      if(other.gameObject.CompareTag("ParedNorte"))
-          tocandoParedNorte = true;
-      if(other.gameObject.CompareTag("ParedSur"))
-          tocandoParedSur = true;
-      if(other.gameObject.CompareTag("ParedEste"))
-          tocandoParedEste = true;
-      if(other.gameObject.CompareTag("ParedOeste"))
-                    tocandoParedOeste = true;
+        if(other.gameObject.CompareTag("ParedNorte"))
+            tocandoParedNorte = true;
+        if(other.gameObject.CompareTag("ParedSur"))
+            tocandoParedSur = true;
+        if(other.gameObject.CompareTag("ParedEste"))
+            tocandoParedEste = true;
+        if(other.gameObject.CompareTag("ParedOeste"))
+            tocandoParedOeste = true;
         if(other.gameObject.CompareTag("BaseDeCarga"))
             actuador.CargarBateria();
         if (other.gameObject.CompareTag("Edificio"))
@@ -63,14 +62,14 @@ public class Sensores : MonoBehaviour
     }
 
     void OnCollisionExit(Collision other){
-      if(other.gameObject.CompareTag("ParedNorte"))
-          tocandoParedNorte = false;
-          if(other.gameObject.CompareTag("ParedSur"))
-              tocandoParedSur = false;
-          if(other.gameObject.CompareTag("ParedEste"))
-              tocandoParedEste = false;
-          if(other.gameObject.CompareTag("ParedOeste"))
-              tocandoParedOeste = false;
+        if(other.gameObject.CompareTag("ParedNorte"))
+            tocandoParedNorte = false;
+        if(other.gameObject.CompareTag("ParedSur"))
+            tocandoParedSur = false;
+        if(other.gameObject.CompareTag("ParedEste"))
+            tocandoParedEste = false;
+        if(other.gameObject.CompareTag("ParedOeste"))
+            tocandoParedOeste = false;
         if (other.gameObject.CompareTag("Edificio"))
             tocandoEdificio = false;
     }
@@ -80,6 +79,8 @@ public class Sensores : MonoBehaviour
             tocandoBasura = true;
             basura = other.gameObject;
         }
+                    
+            
     }
 
     void OnTriggerStay(Collider other){
@@ -92,6 +93,7 @@ public class Sensores : MonoBehaviour
     void OnTriggerExit(Collider other){
         if(other.gameObject.CompareTag("Basura")){
             tocandoBasura = false;
+            actuador.Limpiar(other.gameObject);
         }
     }
 
@@ -99,18 +101,18 @@ public class Sensores : MonoBehaviour
     // Los siguientes métodos definidos son públicos, la intención
     // es que serán usados por otro componente (Controlador)
 
-  public bool ParedNorte(){
-      return tocandoParedNorte;
-  }
-  public bool ParedSur(){
-      return tocandoParedSur;
-  }
-  public bool ParedEste(){
-      return tocandoParedEste;
-  }
-  public bool ParedOeste(){
-      return tocandoParedOeste;
-  }
+    public bool ParedNorte(){
+        return tocandoParedNorte;
+    }
+    public bool ParedSur(){
+        return tocandoParedSur;
+    }
+    public bool ParedEste(){
+        return tocandoParedEste;
+    }
+    public bool ParedOeste(){
+        return tocandoParedOeste;
+    }
     public bool CercaDePared(){
         return radar.CercaDePared();
     }
@@ -133,6 +135,10 @@ public class Sensores : MonoBehaviour
 
     public bool TocandoBasura(){
         return tocandoBasura;
+    }
+
+    public GameObject Basurita() {
+        return this.basura;
     }
 
     public bool CercaDeBasura(){
