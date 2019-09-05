@@ -52,29 +52,28 @@ public class Controlador : MonoBehaviour
 
         // A continuación se muestran ejemplos de uso de actuadores y sensores
         // para ser utilizados de manera manual (por una persona):
+        // Acciones por si hay pared
         if (actuador.HayPared()) {
-            Debug.Log("Paareed");
             actuador.Detener();
             actuador.Izquierda();
             actuador.Detener();
             actuador.Girar180();
-            //actuador.Adelante();
+            // Acciones por si no hay pared y toca un edificio
         } else if (sensor.TocandoEdificio()) {
             actuador.Ascender();
             actuador.Detener();
-            Debug.Log("EEdiifiiciioo");
+            // Accines sino toca nada.
         } else {
             actuador.Adelante();
-            Debug.Log("Naadaa");   
         }
         actuador.Flotar(); //siempre flota
-        actuador.setLastX();
+        //siempre calcula sus coordenadas
+        actuador.setLastX(); 
         actuador.setLastY();
         actuador.setLastZ();
     }
 
-
-
+// Método para girar 180
     void Girar180() {
         if(actuador.HayPared()){
             actuador.Detener();

@@ -10,6 +10,7 @@ public class Sensores : MonoBehaviour
     private Bateria bateria; // Componente adicional (script) que representa la batería
     private Actuadores actuador; // Componente adicional (script) para obtener información de los ac
 
+    // Banderas para todas las paredes.
     private bool tocandoParedNorte;
     private bool tocandoParedSur;
     private bool tocandoParedEste;
@@ -34,6 +35,7 @@ public class Sensores : MonoBehaviour
     // La mayoría de los métodos es para asignar banderas/variables de estado.
 
     void OnCollisionEnter(Collision other){
+        // Colisiones para todas las paredes
         if(other.gameObject.CompareTag("ParedNorte"))
             tocandoParedNorte = true;
         if(other.gameObject.CompareTag("ParedSur"))
