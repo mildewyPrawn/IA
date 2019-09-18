@@ -51,7 +51,7 @@ class Tablero:
         :type turno: bool
         '''
         turno = self.turno if turno is None else turno # permite definir un parametro default que es instancia de la clase (self.turno)
-        movValido = self.validarMovimiento(posX, posY, turno)
+        movValido = self.encierraOponente(posX, posY)
         if movValido:
 
             #self.mundo[posX][posY] = 1 if turno else 2
@@ -91,14 +91,77 @@ class Tablero:
 
 #TODO: este comportamiento podria ir en clase aparte ################################################################
 
+    #TODO: deberian ser un enumerado
+    def encierraOponente(self, posX, posY):
+        color = self.getColorJugador(self.turno)
+        print("la posicion x es:")
+        print(posX)
+        print("la posicion y es:")
+        print(posY)
+
+        return self.encierraOponenteEnDireccion(color, posX, posY, "horizontalDerecha") or self.encierraOponenteEnDireccion(color, posX, posY, "horizontalIzquierda") or self.encierraOponenteEnDireccion(color, posX, posY, "verticalArriba") or self.encierraOponenteEnDireccion(color, posX, posY, "verticalAbajo") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalDerAscendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalDerDescendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalIzqAscendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalIzqDescendente")
+
+    def posicionValida(self, x, y):
+        return 0 <= x < self.dimension and 0 <= y < self.dimension
+
+    def encierraOponenteEnDireccion(self, color, posX, posY, direccion):
+        encierraOponente = False
+
+        if direccion == "horizontalDerecha" and self.posicionValida(posX + 1, posY):
+            encierraOponente = self.esAdyacenteA(posX, posY, 1, 0) and self.encierraOponenteHorizontalRango(posY, color, range(posX + 1, self.dimension))
+            print("horizontalDerecha")
+            print(encierraOponente)
+        elif direccion == "horizontalIzquierda" and self.posicionValida(posX - 1, posY):
+            encierraOponente = self.esAdyacenteA(posX, posY, -1, 0) and self.encierraOponenteHorizontalRango(posY, color, range(posX - 1, -1, -1))
+            print("horizontalIzquierda")
+            print(encierraOponente)
+        elif direccion == "verticalArriba" and self.posicionValida(posX, posY - 1):
+            encierraOponente = self.esAdyacenteA(posX, posY, 0, -1) and self.encierraOponenteVerticalRango(posX, color, range(posY - 1, -1, -1))
+            print("verticalArriba")
+            print(encierraOponente)
+        elif direccion == "verticalAbajo" and self.posicionValida(posX, posY + 1):
+            encierraOponente = self.esAdyacenteA(posX, posY, 0, 1) and self.encierraOponenteVerticalRango(posX, color, range(posY + 1, self.dimension))
+            print("verticalAbajo")
+            print(encierraOponente)
+        elif direccion == "diagonalDerAscendente" and self.posicionValida(posX + 1, posY - 1):
+            encierraOponente = self.esAdyacenteA(posX, posY, 1, -1) and self.encierraOponenteDiagonalRango(color, range(posX + 1, self.dimension), range(posY - 1, -1, -1))
+            print("diagonalDerAscendente")
+            print(encierraOponente)
+        elif direccion == "diagonalDerDescendente" and self.posicionValida(posX + 1, posY + 1):
+            encierraOponente = self.esAdyacenteA(posX, posY, 1, 1) and self.encierraOponenteDiagonalRango(color, range(posX + 1, self.dimension), range(posY + 1, self.dimension))
+            print("diagonalDerDescendente")
+            print(encierraOponente)
+        elif direccion == "diagonalIzqAscendente" and self.posicionValida(posX - 1, posY - 1):
+            encierraOponente = self.esAdyacenteA(posX, posY, -1, -1) and self.encierraOponenteDiagonalRango(color, range(posX - 1, -1, -1), range(posY - 1, -1, -1))
+            print("diagonalIzqAscendente")
+            print(encierraOponente)
+        elif direccion == "diagonalIzqDescendente" and self.posicionValida(posX - 1, posY + 1):
+            encierraOponente = self.esAdyacenteA(posX, posY, -1, 1) and self.encierraOponenteDiagonalRango(color, range(posX - 1, -1, -1), range(posY + 1, self.dimension))
+            print("diagonalIzqDescendente")
+            print(encierraOponente)
+
+        return encierraOponente
+
+    def esAdyacenteA(self, posX, posY, dirX, dirY):
+        colorOponente = self.getColorOponente(self.turno)
+        print ("color propia")
+        print(self.getColorJugador(self.turno))
+        print("color Oponente")
+        print(colorOponente)
+        print("posX")
+        print(posX + dirX)
+        print("posy")
+        print(posY + dirY)
+        print("es adyacente")
+        print(self.mundo[posX + dirX][posY + dirY] == colorOponente)
+        return self.mundo[posX + dirX][posY + dirY] == colorOponente
+
     def validarMovimiento(self, posX, posY, turno):
-        esAdyacente = self.esAdyacenteAOponente(posX, posY, turno)
-        encierraOponente = self.encierraOponente(posX, posY, turno)
         return esAdyacente and encierraOponente
 
     #TODO: en principio este no se usa
-    def esAdyacenteAOponente(self, posX, posY, turno):
-        colorOponente = self.getColorOponente(turno)
+    def esAdyacenteAOponente(self, posX, posY):
+        colorOponente = self.getColorOponente(self.turno)
         for i in range(-1, 2):
             for j in range(-1, 2):
                 if self.mundo[posX + i][posY + j] == colorOponente:
@@ -106,22 +169,23 @@ class Tablero:
 
         return False
 
-    def esAdyacenteA(self, posX, posY, dirX, dirY):
-        colorOponente = self.getColorOponente(self.turno)
-        return self.mundo[posX + dirX][posY + dirY] == colorOponente
 
-    def encierraOponente(self, posX, posY, turno):
-        color = self.getColorJugador(turno)
 
-        horizontal = self.encierraOponenteHorizontal(posX, posY, color)
-        vertical = self.encierraOponenteVertical(posX, posY, color)
-        diagonal = self.encierraOponenteDiagonal(posX, posY, color)
+    #def encierraOponente(self, posX, posY, turno):
+    #    color = self.getColorJugador(turno)
 
-        return horizontal or vertical or diagonal
+    #    horizontal = self.encierraOponenteHorizontal(posX, posY, color)
+    #    vertical = self.encierraOponenteVertical(posX, posY, color)
+    #    diagonal = self.encierraOponenteDiagonal(posX, posY, color)
+
+    #    return horizontal or vertical or diagonal
+
+
 
     def encierraOponenteHorizontal(self, posX, posY, color):
         encierraHaciaDerecha = self.esAdyacenteA(posX, posY, 1, 0) and self.encierraOponenteHorizontalRango(posY, color, range(posX, self.dimension))
         encierraHaciaIzquierda = self.esAdyacenteA(posX, posY, -1, 0) and self.encierraOponenteHorizontalRango(posY, color, range(posX, -1, -1))
+
 
         return encierraHaciaDerecha or encierraHaciaIzquierda
 
