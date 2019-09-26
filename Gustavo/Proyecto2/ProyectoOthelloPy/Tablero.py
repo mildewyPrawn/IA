@@ -237,3 +237,11 @@ class Tablero:
                 self.mundo[i][j] = color
             else:
                 break
+
+    #TODO: completar con las tiradas posibles
+    #TODO:
+    def tiradasPosibles(self):
+        return []
+
+    def esTableroFinal(self):
+        return self.tiradasPosibles == []
