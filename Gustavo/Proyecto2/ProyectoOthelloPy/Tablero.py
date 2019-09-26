@@ -103,6 +103,18 @@ class Tablero:
 
         return self.encierraOponenteEnDireccion(color, posX, posY, "horizontalDerecha") or self.encierraOponenteEnDireccion(color, posX, posY, "horizontalIzquierda") or self.encierraOponenteEnDireccion(color, posX, posY, "verticalArriba") or self.encierraOponenteEnDireccion(color, posX, posY, "verticalAbajo") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalDerAscendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalDerDescendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalIzqAscendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalIzqDescendente")
 
+    def tiradasPosibles(self):
+        color = self.getColorJugador(self.turno)
+
+        tiradas = []
+
+        for posX in range(self.dimension):
+            for posY in range(self.dimension):
+                if self.encierraOponente(posX, posY):
+                    tiradas.append((posX, posY))
+
+        return tiradas
+
     def posicionValida(self, x, y):
         return 0 <= x < self.dimension and 0 <= y < self.dimension
 
@@ -240,8 +252,8 @@ class Tablero:
 
     #TODO: completar con las tiradas posibles
     #TODO:
-    def tiradasPosibles(self):
-        return []
+    #def tiradasPosibles(self):
+    #    return []
 
     def esTableroFinal(self):
         return self.tiradasPosibles == []
