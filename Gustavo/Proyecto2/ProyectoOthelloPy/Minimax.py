@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import Arbol
 import Tablero
 
@@ -7,12 +10,12 @@ def minimax(node, depth, maximizingPlayer):
     if maximizingPlayer:
         valor = float("-inf")
         for nodo in node.children:
-            valor := max(valor, minimax(nodo, depth − 1, False))
+            valor = max(valor, minimax(nodo, sub(depth, 1), False))
         return valor
     else: #minimizingPlayer
         valor = float("inf")
         for nodo in node.children:
-            valor := min(valor, minimax(nodo, depth − 1, True))
+            valor = min(valor, minimax(nodo, sub(depth, 1), True))
         return valor
 
     #TODO: completar
