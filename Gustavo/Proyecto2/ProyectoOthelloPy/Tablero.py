@@ -40,14 +40,6 @@ class Tablero:
                     noStroke() # quitar contorno de linea
                     ellipse(i*self.tamCasilla+(self.tamCasilla/2), j*self.tamCasilla+(self.tamCasilla/2), self.tamCasilla*3/5, self.tamCasilla*3/5)
 
-        posibles = self.tiradasPosibles()
-        for i,j in posibles:
-            # fill(jugador1 if self.mundo[i][j] == 1 else jugador2) # establecer el color de la ficha
-            fill(0,0,255)
-            noStroke() # quitar contorno de linea
-            ellipse(i*self.tamCasilla+(self.tamCasilla/2), j*self.tamCasilla+(self.tamCasilla/2), self.tamCasilla*3/8, self.tamCasilla*3/8)
-                    
-
     def setFicha(self, posX, posY, turno=None):
         ''' Coloca o establece una ficha en una casilla especifica del tablero.
         Nota: El eje vertical esta invertido y el contador empieza en cero.
@@ -62,7 +54,7 @@ class Tablero:
         movimientoRealizado = False
 
         turno = self.turno if turno is None else turno # permite definir un parametro default que es instancia de la clase (self.turno)
-        movValido = self.encierraOponente(posX, posY)
+        movValido = not self.estaOcupado(posX, posY) and self.encierraOponente(posX, posY)
         if movValido:
 
             color = self.getColorJugador(turno)
@@ -118,7 +110,7 @@ class Tablero:
 
         for posX in range(self.dimension):
             for posY in range(self.dimension):
-                if not self.estaOcupado(posX,posY) and self.encierraOponente(posX, posY):
+                if self.encierraOponente(posX, posY):
                     tiradas.append((posX, posY))
 
         return tiradas
