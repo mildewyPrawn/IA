@@ -29,7 +29,7 @@ def minmax(node, depth, maximizingPlayer):
      #           i=v
       #      j++
             #el Return hay que modificar.
-    return (node.children[decision],node.children[decision].difTablero(nodo.value)
+    #return (node.children[decision],node.children[decision].difTablero(nodo.value)
     
             
         
@@ -43,12 +43,12 @@ def minimax1(node, depth, maximizingPlayer):
     if maximizingPlayer:
         valor = float("-inf")
         for nodo in node.children:
-            valor = max(valor, minimax(nodo, sub(depth, 1), False))
+            valor = max(valor, minimax1(nodo, sub(depth, 1), False))
         return valor
     else: #minimizingPlayer
         valor = float("inf")
         for nodo in node.children:
-            valor = min(valor, minimax(nodo, sub(depth, 1), True))
+            valor = min(valor, minimax1(nodo, sub(depth, 1), True))
         return valor
 
     #TODO: completar
