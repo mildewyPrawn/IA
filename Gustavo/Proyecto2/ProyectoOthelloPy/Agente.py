@@ -16,5 +16,6 @@ class Agente:
     def jugar(self, tablero):
         nodo = Node("hola", tablero) #TODO: creo que no es necesario el nombre, ver en clase arbol
         coord = minmax(nodo, self.competitibidad, True)
+        print (coord)
         return coord
     #TODO: aca hay que llamar a minimax

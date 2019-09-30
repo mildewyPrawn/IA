@@ -21,4 +21,5 @@ class Node(object):
         tablerosHijos  = self.tablero.tiradasPosibles()
         for i,j in tablerosHijos:
             #TODO: hacer el cambio de tablero afuera
-            self.children.append(Node("hola", self.tablero.setFicha(i,j))) #TODO: creo que el nombre hay que sacarlo
+            tablero = self.tablero.tableroConSetFicha(i, j)
+            self.children.append(Node("hola", tablero)) #TODO: creo que el nombre hay que sacarlo

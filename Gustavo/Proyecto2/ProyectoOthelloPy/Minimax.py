@@ -13,13 +13,13 @@ def minmax(node, depth, maximizingPlayer):
     #if maximizingPlayer:
 
     for nodo in node.children:
-        valor.append(minimax1(nodo, sub(depth, 1), False))
+        valor.append(minimax1(nodo, depth-1, False))
         i=float("-inf")
         for v in valor:
             if v>i:
                 decision=j
                 i=v
-            add(j, 1)
+            j = j + 1
     #else: minimizingPlayer
         #for nodo in node.children:
            # valor.append(minimax(nodo, sub(depth, 1), True)))
@@ -30,10 +30,10 @@ def minmax(node, depth, maximizingPlayer):
      #           i=v
       #      j++
             #el Return hay que modificar.
-    #return (node.children[decision],node.children[decision].difTablero(nodo.value)
+    return node.children[decision],node.children[decision].difTablero(nodo.tablero)
 
 def minimax1(node, depth, maximizingPlayer):
-    if depth == 0 or node.value.esTableroFinal():
+    if depth == 0 or node.tablero.esTableroFinal():
         return heuristica(node.value)
     node.generaHijos();
     if maximizingPlayer:

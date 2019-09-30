@@ -5,6 +5,8 @@ Fernández Del Valle Diego Marcial 314198039
 Reyes Granados Naomi Itzel 314141341
 Vázquez Rodríguez Jésica 720034837
 
+m y n son numeros positivos
+
 Para correrlo:
 
-java -jar processing-py.jar ProyectoOthelloPy.pyde
+COLOR=<n> DIFICULTAD=<m> java -jar processing-py.jar ProyectoOthelloPy.pyde

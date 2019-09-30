@@ -1,4 +1,4 @@
-class Tablero:    
+class Tablero:
     ''' Definicion de un tablero para el juego de Othello '''
     def __init__(self, dimension=8, tamCasilla=60):
         ''' Constructor base de un tablero
@@ -18,7 +18,7 @@ class Tablero:
         self.mundo[(self.dimension/2)-1][(self.dimension/2)-1] = 2
         self.mundo[self.dimension/2][self.dimension/2] = 2
 
-    def display(self):        
+    def display(self):
         ''' Dibuja en pantalla el tablero, es decir, dibuja las casillas y las fichas de los jugadores '''
 
         background(204)
@@ -31,8 +31,8 @@ class Tablero:
         else:
             rect(66, 0, 33, 100) #Right
             fill(255,0,0)
-        
-        
+
+
         fondo = color(63, 221, 24) # El color del fondo del tablero
         linea = color(0) # El color de linea del tablero
         grosor = 2 # Ancho de linea (en pixeles)
@@ -84,7 +84,6 @@ class Tablero:
             movimientoRealizado = True
 
         return movimientoRealizado
-
 
     def cambiarTurno(self):
         ''' Representa el cambio de turno. Normalmente representa la ultima accion del turno '''
@@ -321,3 +320,12 @@ class Tablero:
     ''' Determina si es un tablero en el que no se pueden realizar movimientos '''
     def esTableroFinal(self):
         return self.tiradasPosibles == []
+
+    def tableroConSetFicha(self, posX, posY):
+        tablero = self
+
+        movValido = tablero.setFicha(posX, posY)
+        if movValido:
+            return tablero
+        else:
+            return None
