@@ -16,9 +16,9 @@ class Node(object):
     #def add_child(self, obj):
 #        self.children.append(obj)
 
-    ''' Genera los tableros resultado de jugar fichas en posiciones validas ''''
+    ''' Genera los tableros resultado de jugar fichas en posiciones validas '''
     def generaHijos(self):
-        tablerosHijos  = value.tiradasPosibles()
+        tablerosHijos  = self.tablero.tiradasPosibles()
         for i,j in tablerosHijos:
 	    #ver si la sintaxis esta bien
-            self.children.append(n= Nodo(tablero.setFicha(i,j)))
+            self.children.append(Node("hola", self.tablero.setFicha(i,j))) #TODO: creo que el nombre hay que sacarlo
