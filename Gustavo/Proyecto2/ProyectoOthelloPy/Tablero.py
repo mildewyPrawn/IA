@@ -263,4 +263,6 @@ class Tablero:
     #def tiradasPosibles(self):
     #    return []
 
-def esTableroFinal(self):
+    def esTableroFinal(self):
+        return False
+

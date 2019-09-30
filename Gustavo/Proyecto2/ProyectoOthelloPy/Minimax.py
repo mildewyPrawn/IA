@@ -3,12 +3,13 @@
 
 import Arbol
 import Tablero
+
 #Metodo auxiliar que 
 def minmax(node, depth, maximizingPlayer):
-     valor =  []
-     j=0
-     desicion=-1
-     node.generaHijos();
+    valor =  []
+    j=0
+    decision=-1
+    node.generaHijos();
     #if maximizingPlayer:
        
     for nodo in node.children:
@@ -18,7 +19,7 @@ def minmax(node, depth, maximizingPlayer):
             if v>i:
                 decision=j
                 i=v
-            j++
+            add(j, 1)
     #else: minimizingPlayer
         #for nodo in node.children:
            # valor.append(minimax(nodo, sub(depth, 1), True)))
@@ -30,11 +31,6 @@ def minmax(node, depth, maximizingPlayer):
       #      j++
             #el Return hay que modificar.
     #return (node.children[decision],node.children[decision].difTablero(nodo.value)
-    
-            
-        
-
-
             
 def minimax1(node, depth, maximizingPlayer):
     if depth == 0 or node.value.esTableroFinal():
