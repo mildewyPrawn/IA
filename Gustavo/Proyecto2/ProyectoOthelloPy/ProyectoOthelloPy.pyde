@@ -17,7 +17,6 @@ def settings():
 def setup():
     ''' Inicializaciones '''
     println("Proyecto base para el juego de mesa Othello")
-    
 
 def draw():
     ''' Ciclo de dibujado '''
