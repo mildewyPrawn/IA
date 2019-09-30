@@ -1,4 +1,4 @@
-class Tablero:
+class Tablero:    
     ''' Definicion de un tablero para el juego de Othello '''
     def __init__(self, dimension=8, tamCasilla=60):
         ''' Constructor base de un tablero
@@ -18,8 +18,21 @@ class Tablero:
         self.mundo[(self.dimension/2)-1][(self.dimension/2)-1] = 2
         self.mundo[self.dimension/2][self.dimension/2] = 2
 
-    def display(self):
+    def display(self):        
         ''' Dibuja en pantalla el tablero, es decir, dibuja las casillas y las fichas de los jugadores '''
+
+        background(204)
+        if (mouseX < 33):
+            rect(0, 0, 33, 100) # Left
+            fill(0,255,0)
+        elif (mouseX < 66):
+            rect(33, 0, 33, 100) # Middle
+            fill(250,150,50)
+        else:
+            rect(66, 0, 33, 100) #Right
+            fill(255,0,0)
+        
+        
         fondo = color(63, 221, 24) # El color del fondo del tablero
         linea = color(0) # El color de linea del tablero
         grosor = 2 # Ancho de linea (en pixeles)
