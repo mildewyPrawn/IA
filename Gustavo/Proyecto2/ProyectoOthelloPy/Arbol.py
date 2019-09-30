@@ -20,5 +20,5 @@ class Node(object):
     def generaHijos(self):
         tablerosHijos  = self.tablero.tiradasPosibles()
         for i,j in tablerosHijos:
-	    #ver si la sintaxis esta bien
+            #TODO: hacer el cambio de tablero afuera
             self.children.append(Node("hola", self.tablero.setFicha(i,j))) #TODO: creo que el nombre hay que sacarlo

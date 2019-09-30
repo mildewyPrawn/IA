@@ -4,11 +4,15 @@
 
 from Agente import *
 from Tablero import *
+import os
 
 tablero = Tablero()
 agente = Agente(2) #TODO: debería recibir el nivel de dificultad
 
 cantidadJugadores = 1 #TODO: esto se deberia setear cuando se elige en la pantalla
+
+dificultad = int(os.environ['DIFICULTAD'])%3
+color = int(os.environ['COLOR'])%2
 
 def settings():
     ''' Metodo para establecer tamano de ventana al incluir variables '''
