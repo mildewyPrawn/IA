@@ -105,12 +105,23 @@ class Tablero:
 
 #################################################################
 
-    #TODO: deberian ser un enumerado en lugar de string
+    ''' Verifica si una posicion encierra a su oponente en alguna de las direcciones posibles
+    :param posX: Coordenada horizontal de la casilla a verificar
+    :type posX: int
+    :param posY: Coordenada vertical de la casilla a verificar
+    :type posY: int
+    :returns: True si encierra a oponente en alguna direccion, false en otro caso
+    :rtype: bool
+    '''
     def encierraOponente(self, posX, posY):
         color = self.getColorJugador(self.turno)
 
         return self.encierraOponenteEnDireccion(color, posX, posY, "horizontalDerecha") or self.encierraOponenteEnDireccion(color, posX, posY, "horizontalIzquierda") or self.encierraOponenteEnDireccion(color, posX, posY, "verticalArriba") or self.encierraOponenteEnDireccion(color, posX, posY, "verticalAbajo") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalDerAscendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalDerDescendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalIzqAscendente") or self.encierraOponenteEnDireccion(color, posX, posY, "diagonalIzqDescendente")
 
+    ''' Dado un tablero devuelve las posiciones en las cuales se puede jugar una ficha
+    :returns: Una lista de coordenadas en las que se pueden jugar fichas
+    :rtype: lista de coordenadas
+    '''
     def tiradasPosibles(self):
         color = self.getColorJugador(self.turno)
 
@@ -123,9 +134,29 @@ class Tablero:
 
         return tiradas
 
+    ''' Verifica si una posicion esta en el rango del tablero
+    :param posX: Coordenada horizontal de la casilla a verificar
+    :type posX: int
+    :param posY: Coordenada vertical de la casilla a verificar
+    :type posY: int
+    :returns: True si esta en rango, false en otro caso
+    :rtype: bool
+    '''
     def posicionValida(self, x, y):
         return 0 <= x < self.dimension and 0 <= y < self.dimension
 
+    ''' Verifica si se encierra oponente en la direccion determinada
+    :param color: color que se quiere encerrar
+    :type color: int
+    :param posX: Coordenada horizontal de la casilla a verificar
+    :type posX: int
+    :param posY: Coordenada vertical de la casilla a verificar
+    :type posY: int
+    :param direccion: direccion en la que se quiere encerrar oponente
+    :type direccion: string
+    :returns: True si encierra oponente en esa direccion, false en otro caso
+    :rtype: bool
+    '''
     def encierraOponenteEnDireccion(self, color, posX, posY, direccion):
         encierraOponente = False
 
@@ -172,11 +203,6 @@ class Tablero:
     def encierraDiagonalIzqDescendente(self, posX, posY, color):
         return self.esAdyacenteA(posX, posY, -1, 1) and self.encierraOponenteDiagonalRango(color, range(posX - 1, -1, -1), range(posY + 1, self.dimension))
 
-    def esAdyacenteA(self, posX, posY, dirX, dirY):
-        colorOponente = self.getColorOponente(self.turno)
-
-        return self.mundo[posX + dirX][posY + dirY] == colorOponente
-
     def encierraOponenteHorizontalRango(self, posY, color, rango):
         for i in rango:
             if self.mundo[i][posY] == 0:
@@ -204,15 +230,36 @@ class Tablero:
 
         return False
 
+    ''' Verifica si una posicion es adyacente a oponente en una direccion
+    :param posX: Coordenada horizontal de la casilla a verificar
+    :type posX: int
+    :param posY: Coordenada vertical de la casilla a verificar
+    :type posY: int
+    :param dirX: Direccion en X. 1 para derecha, -1 para izquierda, 0 en el lugar
+    :type dirX: int
+    :param dirY: Direccion en Y. 1 para arriba, -1 para abajo, 0 en el lugar
+    :type dirY: int
+    :returns: True si es adyacente a oponente en esa direccion, false en otro caso
+    :rtype: bool
+    '''
+    def esAdyacenteA(self, posX, posY, dirX, dirY):
+        colorOponente = self.getColorOponente(self.turno)
+
+        return self.mundo[posX + dirX][posY + dirY] == colorOponente
+
+    ''' Devuelve el color del oponente '''
     def getColorOponente(self, turno):
         return 2 if turno else 1
 
+    ''' Devuelve el color del jugador actual '''
     def getColorJugador(self, turno):
         return 1 if turno else 2
 
+    ''' Coloca una ficha del color determinado en el tablero '''
     def jugarFicha(self, posX, posY, color):
         self.mundo[posX][posY] = color
 
+    ''' Cambia de color linea de fichas '''
     def cambiarColor(self, posX, posY, color):
         if self.posicionValida(posX + 1, posY) and self.encierraHorizontalDerecha(posX, posY, color):
             self.cambiarColorHorizontal(posY, range(posX + 1, self.dimension))
@@ -258,10 +305,6 @@ class Tablero:
             else:
                 break
 
-    #TODO: completar con las tiradas posibles
-    #TODO:
-    #def tiradasPosibles(self):
-    #    return []
-
+    ''' Determina si es un tablero en el que no se pueden realizar movimientos '''
     def esTableroFinal(self):
         return self.tiradasPosibles == []

@@ -6,7 +6,7 @@ from Agente import *
 from Tablero import *
 
 tablero = Tablero()
-agente = Agente(2)
+agente = Agente(2) #TODO: debería recibir el nivel de dificultad
 
 cantidadJugadores = 1 #TODO: esto se deberia setear cuando se elige en la pantalla
 

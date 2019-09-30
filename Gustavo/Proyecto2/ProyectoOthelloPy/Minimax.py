@@ -4,7 +4,7 @@
 import Arbol
 import Tablero
 
-#Metodo auxiliar que
+''' Algoritmo para calcular el minimax '''
 def minmax(node, depth, maximizingPlayer):
     valor =  []
     j=0
@@ -47,7 +47,7 @@ def minimax1(node, depth, maximizingPlayer):
             valor = min(valor, minimax(nodo, sub(depth, 1), True))
         return valor
 
-    #TODO: completar
+''' Heuristica utilizada para definir la siguiente jugada '''
 def heuristica(tablero, negras):
     tab = [[0 for i in range(tablero.dimension)] for j in range(tablero.dimension)]
     for i in range(tablero.dimension):
