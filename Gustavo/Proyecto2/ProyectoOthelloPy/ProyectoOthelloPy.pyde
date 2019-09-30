@@ -2,7 +2,12 @@
 :author: Rodrigo Colin
 '''
 from Tablero import *
+import os
+
 tablero = Tablero()
+
+dificultad = int(os.environ['DIFICULTAD'])%3
+color = int(os.environ['COLOR'])%2
 
 def settings():
     ''' Metodo para establecer tamano de ventana al incluir variables '''
@@ -11,7 +16,6 @@ def settings():
 def setup():
     ''' Inicializaciones '''
     println("Proyecto base para el juego de mesa Othello")
-    
 
 def draw():
     ''' Ciclo de dibujado '''
@@ -19,6 +23,8 @@ def draw():
 
 def mousePressed():
     ''' Evento para detectar cuando el usuario da clic '''
+    print str(dificultad) + "D"
+    print str(color) + "C"
     println("\nClic en la casilla " + "[" + str(mouseX/tablero.tamCasilla) + ", " + str(mouseY/tablero.tamCasilla) + "]")
     if not tablero.estaOcupado(mouseX/tablero.tamCasilla, mouseY/tablero.tamCasilla):
         jugadaTerminada = tablero.setFicha(mouseX/tablero.tamCasilla, mouseY/tablero.tamCasilla)
