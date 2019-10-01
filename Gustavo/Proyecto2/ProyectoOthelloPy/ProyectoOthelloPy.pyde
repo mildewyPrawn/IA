@@ -11,8 +11,10 @@ cantidadJugadores = 1 #TODO: esto se deberia setear cuando se elige en la pantal
 dificultad = int(os.environ['DIFICULTAD'])%3
 color = int(os.environ['COLOR'])%2
 
+dificultad = 1 if dificultad == 0 else (4 if dificultad == 1 else 6)
+
 tablero = Tablero()
-agente = Agente(2) #TODO: debería recibir el nivel de dificultad
+agente = Agente(dificultad)
 
 def settings():
     ''' Metodo para establecer tamano de ventana al incluir variables '''
@@ -47,18 +49,24 @@ def ceroJugadores():
 #TODO: probar este cuando tengamos heuristica que funcione
 def unJugador():
   if tablero.turno: #Juega el jugador de ficha color negro
-    if mousePressed:
-      println("\nClic en la casilla " + "[" + str(mouseX/tablero.tamCasilla) + ", " + str(mouseY/tablero.tamCasilla) + "]")
-      jugadaTerminada = tablero.setFicha(mouseX/tablero.tamCasilla, mouseY/tablero.tamCasilla)
+    if not tablero.esTableroFinal():
+      if mousePressed:
+        println("\nClic en la casilla " + "[" + str(mouseX/tablero.tamCasilla) + ", " + str(mouseY/tablero.tamCasilla) + "]")
+
+        jugadaTerminada = tablero.setFicha(mouseX/tablero.tamCasilla, mouseY/tablero.tamCasilla)
+        if jugadaTerminada:
+          tablero.cambiarTurno()
+    else:
+      tablero.cambiarTurno()
+  else: #Juega el jugador de ficha color blanco
+    if not tablero.esTableroFinal():
+      posX, posY = agente.jugar(tablero)
+      jugadaTerminada = tablero.setFicha(posX, posY)
       if jugadaTerminada:
         tablero.cambiarTurno()
-  else: #Juega el jugador de ficha color blanco
-    posX, posY = agente.jugar(tablero)
-    jugadaTerminada = tablero.setFicha(posX, posY)
-    if jugadaTerminada:
+    else:
       tablero.cambiarTurno()
 
-#TODO: ver que pasa cuando no hay jugadas disponibles
 def dosJugadores():
   if tablero.turno: #Juega el jugador de ficha color negro
     if mousePressed:

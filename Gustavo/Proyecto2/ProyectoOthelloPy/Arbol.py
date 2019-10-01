@@ -9,8 +9,7 @@ class Node(object):
     :param tablero: tablero sobre el que se define la siguiente jugada
     :type nombre: Tablero
     '''
-    def __init__(self, name, tablero): #TODO: ver si hay que pasar profundidad
-        self.name = name
+    def __init__(self, tablero): #TODO: ver si hay que pasar profundidad
         self.tablero = tablero
         self.children = []
     def add_child(self, obj):
@@ -22,6 +21,6 @@ class Node(object):
         hijos = []
         for i,j in tablerosHijos:
             tablero = self.tablero.tableroConSetFicha(i, j)
-            hijos.append(Node("hola", tablero))
+            hijos.append(Node(tablero))
 
         return hijos

@@ -14,7 +14,6 @@ class Agente:
 
     ''' Devuelve coordenada en la cual jugar la ficha '''
     def jugar(self, tablero):
-        nodo = Node("hola", tablero) #TODO: creo que no es necesario el nombre, ver en clase arbol
+        nodo = Node(tablero)
         coord = minmax(nodo, self.competitibidad, True)
         return coord
-    #TODO: aca hay que llamar a minimax
