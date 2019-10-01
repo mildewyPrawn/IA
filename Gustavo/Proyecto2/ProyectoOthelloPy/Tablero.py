@@ -143,7 +143,6 @@ class Tablero:
             for posY in range(self.dimension):
                 if not self.estaOcupado(posX,posY) and self.encierraOponente(posX, posY):
                     tiradas.append((posX, posY))
-
         return tiradas
 
     ''' Verifica si una posicion esta en el rango del tablero
@@ -259,6 +258,17 @@ class Tablero:
 
         return self.mundo[posX + dirX][posY + dirY] == colorOponente
 
+    '''Devuelve el color de la casilla'''
+    def getColorCasilla(self, posX, posY):
+        color = 0
+
+        if self.mundo[posX][posY] == 1:
+            color = 1
+        elif self.mundo[posX][posY] == 2:
+            color = 2
+
+        return color
+
     ''' Devuelve el color del oponente '''
     def getColorOponente(self, turno):
         return 2 if turno else 1
@@ -319,13 +329,34 @@ class Tablero:
 
     ''' Determina si es un tablero en el que no se pueden realizar movimientos '''
     def esTableroFinal(self):
-        return self.tiradasPosibles == []
+        return self.tiradasPosibles() == []
 
     def tableroConSetFicha(self, posX, posY):
-        tablero = self
+        tablero = self.copyTablero()
 
         movValido = tablero.setFicha(posX, posY)
         if movValido:
             return tablero
         else:
             return None
+
+    '''Realiza una copia del tablero'''
+    def copyTablero(self):
+        tablero = Tablero(self.dimension, self.tamCasilla)
+
+        tablero.turno = self.turno # Representa de quien es el turno bajo la siguiente convencion: true = jugador 1, false = jugador 2
+        tablero.numeroDeTurno = self.numeroDeTurno
+
+        for i in range(self.dimension):
+            for j in range(self.dimension):
+                tablero.mundo[i][j] = self.mundo[i][j]
+
+        return tablero
+
+    def difTablero(self, tablero2):
+        coord = (-1, -1)
+        for posX in range(tablero2.dimension):
+            for posY in range(tablero2.dimension):
+                if self.mundo[posX][posY] == 0 and self.mundo[posX][posY] != tablero2.mundo[posX][posY]:
+                    coord = (posX, posY)
+        return coord

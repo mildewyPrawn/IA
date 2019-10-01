@@ -7,44 +7,36 @@ import Tablero
 ''' Algoritmo para calcular el minimax '''
 def minmax(node, depth, maximizingPlayer):
     valor =  []
-    j=0
-    decision=-1
-    node.generaHijos();
-    #if maximizingPlayer:
+
+    node.children = node.generaHijos()
 
     for nodo in node.children:
         valor.append(minimax1(nodo, depth-1, False))
-        i=float("-inf")
-        for v in valor:
-            if v>i:
-                decision=j
-                i=v
-            j = j + 1
-    #else: minimizingPlayer
-        #for nodo in node.children:
-           # valor.append(minimax(nodo, sub(depth, 1), True)))
-#        i=float("inf")
-  #      for v in valor:
-   #         if v<i:
-    #            decision=j
-     #           i=v
-      #      j++
-            #el Return hay que modificar.
-    return node.children[decision],node.children[decision].difTablero(nodo.tablero)
+        max=float("-inf")
+    print ("saliiiiiii DEL MINIMAX 1")
+    decision=-1
+    j = 0
+    for v in valor:
+        if v > max:
+            decision = j
+            max = v
+        j = j + 1
+    return node.tablero.difTablero(node.children[decision].tablero)
 
 def minimax1(node, depth, maximizingPlayer):
     if depth == 0 or node.tablero.esTableroFinal():
-        return heuristica(node.value)
-    node.generaHijos();
+        return heuristica(node.tablero, maximizingPlayer)
+    node.children = node.generaHijos();
     if maximizingPlayer:
         valor = float("-inf")
         for nodo in node.children:
-            valor = max(valor, minimax1(nodo, sub(depth, 1), False))
+            valor = max(valor, minimax1(nodo, depth - 1, False))
         return valor
     else: #minimizingPlayer
         valor = float("inf")
         for nodo in node.children:
-            valor = min(valor, minimax(nodo, sub(depth, 1), True))
+            valor = min(valor, minimax1(nodo, depth - 1, True))
+
         return valor
 
 ''' Heuristica utilizada para definir la siguiente jugada '''
@@ -93,13 +85,13 @@ def heuristica(tablero, negras):
     for i in range(tablero.dimension):
             for j in range(tablero.dimension):
                 if negras:
-                    if tablero[i][j]== 1:
+                    if tablero.getColorCasilla(i,j) == 1:
                         h+=tab[i][j]
-                    elif tablero[i][j]== 2:
+                    elif tablero.getColorCasilla(i,j) == 2:
                         h-=tab[i][j]
                 else:
-                    if tablero[i][j]== 1:
+                    if tablero.getColorCasilla(i,j) == 1:
                         h-=tab[i][j]
-                    elif tablero[i][j]== 2:
+                    elif tablero.getColorCasilla(i,j) == 2:
                         h+=tab[i][j]
     return h

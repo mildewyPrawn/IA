@@ -6,13 +6,13 @@ from Agente import *
 from Tablero import *
 import os
 
-tablero = Tablero()
-agente = Agente(2) #TODO: debería recibir el nivel de dificultad
-
 cantidadJugadores = 1 #TODO: esto se deberia setear cuando se elige en la pantalla
 
 dificultad = int(os.environ['DIFICULTAD'])%3
 color = int(os.environ['COLOR'])%2
+
+tablero = Tablero()
+agente = Agente(2) #TODO: debería recibir el nivel de dificultad
 
 def settings():
     ''' Metodo para establecer tamano de ventana al incluir variables '''
@@ -53,8 +53,8 @@ def unJugador():
       if jugadaTerminada:
         tablero.cambiarTurno()
   else: #Juega el jugador de ficha color blanco
-    coord = agente.jugar(tablero) #TODO: ahora esta hardcodeada (1,1)
-    jugadaTerminada = tablero.setFicha(coord[0], coord[1])
+    posX, posY = agente.jugar(tablero)
+    jugadaTerminada = tablero.setFicha(posX, posY)
     if jugadaTerminada:
       tablero.cambiarTurno()
 

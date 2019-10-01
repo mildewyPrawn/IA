@@ -13,13 +13,15 @@ class Node(object):
         self.name = name
         self.tablero = tablero
         self.children = []
-    #def add_child(self, obj):
-#        self.children.append(obj)
+    def add_child(self, obj):
+        self.children.append(obj)
 
     ''' Genera los tableros resultado de jugar fichas en posiciones validas '''
     def generaHijos(self):
         tablerosHijos  = self.tablero.tiradasPosibles()
+        hijos = []
         for i,j in tablerosHijos:
-            #TODO: hacer el cambio de tablero afuera
             tablero = self.tablero.tableroConSetFicha(i, j)
-            self.children.append(Node("hola", tablero)) #TODO: creo que el nombre hay que sacarlo
+            hijos.append(Node("hola", tablero))
+
+        return hijos
