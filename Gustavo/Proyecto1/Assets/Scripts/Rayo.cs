@@ -22,14 +22,18 @@ public class Rayo : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.forward, out raycastHit, longitudDeRayo)){
             if(raycastHit.collider.gameObject.CompareTag("Pared")){
                 frenteAPared = true;
+                return;
             }
             else{
                 frenteAPared = false;
+                return;
             }
             if (raycastHit.collider.gameObject.CompareTag("Edificio")) {
                 frenteAEdificio = true;
+                return;
             } else {
                 frenteAEdificio = false;
+                return;
             }
         }
     }
@@ -38,7 +42,9 @@ public class Rayo : MonoBehaviour
     public bool FrenteAPared(){
         return frenteAPared;
     }
-
+    public void ParedEvitada(){
+        frenteAPared=false;
+    }
     public bool FrenteAEdificio() {
         return frenteAEdificio;
     }
