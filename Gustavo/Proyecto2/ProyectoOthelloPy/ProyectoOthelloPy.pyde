@@ -11,7 +11,7 @@ cantidadJugadores = 1 #TODO: esto se deberia setear cuando se elige en la pantal
 dificultad = int(os.environ['DIFICULTAD'])%3
 color = int(os.environ['COLOR'])%2
 
-dificultad = 1 if dificultad == 0 else (4 if dificultad == 1 else 6)
+dificultad = 1 if dificultad == 0 else (4 if dificultad == 1 else 5)
 
 tablero = Tablero()
 agente = Agente(dificultad)
