@@ -22,6 +22,7 @@ def minmax(node, depth, maximizingPlayer):
         j = j + 1
     return node.tablero.difTablero(node.children[decision].tablero)
 
+''' Algoritmo auxiliar para minmax'''
 def minimax1(node, depth, maximizingPlayer):
     if depth == 0 or node.tablero.esTableroFinal():
         return heuristica(node.tablero, maximizingPlayer)
@@ -39,6 +40,7 @@ def minimax1(node, depth, maximizingPlayer):
         return valor
 
 ''' Heuristica utilizada para definir la siguiente jugada '''
+''' Consiste en asignar pesos al tablero, ver PDF.'''
 def heuristica(tablero, negras):
     tab = [[0 for i in range(tablero.dimension)] for j in range(tablero.dimension)]
     for i in range(tablero.dimension):

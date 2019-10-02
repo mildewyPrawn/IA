@@ -8,9 +8,11 @@ import os
 
 cantidadJugadores = 1 #TODO: esto se deberia setear cuando se elige en la pantalla
 
+# opciones para elegir la dificultad del juego y el color de fichas.
 dificultad = int(os.environ['DIFICULTAD'])%3
 color = int(os.environ['COLOR'])%2
 
+# Arreglar la dificultad porque queda en 0,1,2 y son profundidades parecidas
 dificultad = 1 if dificultad == 0 else (4 if dificultad == 1 else 5)
 
 tablero = Tablero()
@@ -46,7 +48,9 @@ def ceroJugadores():
   if jugadaTerminada:
     tablero.cambiarTurno()
 
+#TODO: recibir parámetro para jugar con o sin máquina
 #TODO: probar este cuando tengamos heuristica que funcione
+'''Opción para jugar contra la máquinta'''
 def unJugador():
   if tablero.turno: #Juega el jugador de ficha color negro
     if not tablero.esTableroFinal():
@@ -67,6 +71,7 @@ def unJugador():
     else:
       tablero.cambiarTurno()
 
+'''Opción para no jugar con la máquina'''
 def dosJugadores():
   if tablero.turno: #Juega el jugador de ficha color negro
     if mousePressed:

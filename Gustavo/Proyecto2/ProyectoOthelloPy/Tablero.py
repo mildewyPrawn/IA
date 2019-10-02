@@ -353,6 +353,8 @@ class Tablero:
 
         return tablero
 
+    '''Toma un tablero y regresa la ficha en donde difieren, solo cuenta las 
+    fichas en 0'''
     def difTablero(self, tablero2):
         coord = (-1, -1)
         for posX in range(tablero2.dimension):
