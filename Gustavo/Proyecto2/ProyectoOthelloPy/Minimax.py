@@ -66,7 +66,7 @@ def heuristica(tablero, negras):
                    elif i ==tablero.dimension-2 and j == 1:
                        tab[i][j]=0
                    else:
-                       tab[i][j]=10
+                       tab[i][j]=1
                elif i==2 or j==2 or i==tablero.dimension-3 or j==tablero.dimension-3:
                    if i==2 and j==2 :
                        tab[i][j]=10
