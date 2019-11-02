@@ -55,7 +55,7 @@ def readAgain(like):
         if gen not in like:
             continue
         else:
-            if len(s) > 18:
+            if len(s) > 18: # we have songs like "word word, word"
                 continue
             else:
                 songs[s[2]] = s
@@ -124,7 +124,6 @@ def score():
     fav_songs.append(s3)
     fav_songs.append(s4)
     fav_songs.append(s5)
-    # print(songs_dic[s1][0])
     prom_acu = (float(songs_dic[s1][5])+float(songs_dic[s2][5])+float(songs_dic[s3][5])+float(songs_dic[s4][5])+float(songs_dic[s5][5]))/5
     prom_dan = (float(songs_dic[s1][6])+float(songs_dic[s2][6])+float(songs_dic[s3][6])+float(songs_dic[s4][6])+float(songs_dic[s5][6]))/5
     prom_ene = (float(songs_dic[s1][8])+float(songs_dic[s2][8])+float(songs_dic[s3][8])+float(songs_dic[s4][8])+float(songs_dic[s5][8]))/5
@@ -134,16 +133,60 @@ def score():
     prom_spe = (float(songs_dic[s1][14])+float(songs_dic[s2][14])+float(songs_dic[s3][14])+float(songs_dic[s4][14])+float(songs_dic[s5][14]))/5
     prom_tem = (float(songs_dic[s1][15])+float(songs_dic[s2][15])+float(songs_dic[s3][15])+float(songs_dic[s4][15])+float(songs_dic[s5][15]))/5
     prom_val = (float(songs_dic[s1][17])+float(songs_dic[s2][17])+float(songs_dic[s3][17])+float(songs_dic[s4][17])+float(songs_dic[s5][17]))/5
-    print(prom_acu)
-    print(prom_dan)
-    print(prom_ene)
-    print(prom_ins)
-    print(prom_liv)
-    print(prom_lou)
-    print(prom_spe)
-    print(prom_tem)
-    print(prom_val)
-    print(fav_songs)
+    print(prom_acu) # 0
+    print(prom_dan) # 1
+    print(prom_ene) # 2
+    print(prom_ins) # 3
+    print(prom_liv) # 4
+    print(prom_lou) # 5
+    print(prom_spe) # 6
+    print(prom_tem) # 7
+    print(prom_val) # 8
+    values = [prom_acu, prom_dan, prom_ene, prom_ins, prom_liv, prom_lou,
+              prom_spe, prom_tem, prom_val]
+    print(values)
+    look4Songs(values)
+    # print(fav_songs)
+
+def look4Songs(values):
+    p_acu = values[0] # the values we need
+    p_dan = values[1]
+    p_ene = values[2]
+    p_ins = values[3]
+    p_liv = values[4]
+    p_lou = values[5]
+    p_spe = values[6]
+    p_tem = values[7]
+    p_val = values[8]
+    maybe = []
+    for x in all_songs:
+        acu = float(songs_dic[x][5]) # the values to compare
+        dan = float(songs_dic[x][6])
+        ene = float(songs_dic[x][8])
+        ins = float(songs_dic[x][9])
+        liv = float(songs_dic[x][11])
+        lou = float(songs_dic[x][12])
+        spe = float(songs_dic[x][14])
+        tem = float(songs_dic[x][15])
+        val = float(songs_dic[x][17])
+        t_acu = (p_acu-acu)
+        t_dan = (p_dan-dan)
+        t_ene = (p_ene-ene)
+        t_ins = (p_ins-ins)
+        t_liv = (p_liv-liv)
+        t_lou = (p_lou-lou)
+        t_spe = (p_spe-spe)
+        t_tem = (p_tem-tem)
+        t_val = (p_val-val)
+        tot = t_acu+t_dan+t_ene+t_ins+t_liv+t_lou+t_spe+t_tem+t_val
+        z = (tot, x)
+        maybe.append(z)
+        # print(songs_dic[x])
+        maybe.sort()
+    for i in range(5):
+        print(maybe[i])
+    print("HELOOOO")
+    
 
 window = tkinter.Tk() # create window
 window.title("Music recommender")
