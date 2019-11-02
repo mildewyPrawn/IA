@@ -1,0 +1,9 @@
+To run the program: python music_rec.py
+
+this music recommender takes some music genders and 5 songs, then it gives
+you 5 songs we think tou may like.
+
+TODO: make a load function while the program sorts the songs.
+      ask for how many songs the user wants.
+      modify the comboboxes, so we can have song-artist, bc we don't know
+        the artist.
