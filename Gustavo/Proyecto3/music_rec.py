@@ -40,6 +40,9 @@ def openCSV():
     genders.sort()
     return genders
 
+'''Im so stupid, so we need to read the file, the advantage is that now we can
+choose the lines we need. We take a list of genders the user like, and display
+another window, so he/she can choose a song they like.'''
 def readAgain(like):
     songs = {}
     f = open("SpotifyFeatures.csv", "r", encoding='utf-8-sig')
@@ -79,10 +82,14 @@ def submit():
     gens = tkinter.Toplevel(window)
     pickSongs(songs, gens)
 
+'''This creates a new window with comboboxes with all the songs of the genders 
+the user likes.
+TODO: make an accept button, so we can save the songs they prefer.'''
 def pickSongs(songs, gens):
     new_songs = []
     for x in songs:
         new_songs.append(x)
+    new_songs.sort()
     fav_songs = []
     combo1 = Combobox(gens, state="readonly")
     combo1['values']=new_songs
