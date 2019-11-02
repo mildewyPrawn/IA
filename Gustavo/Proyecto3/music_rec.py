@@ -181,11 +181,19 @@ def look4Songs(values):
         tot = t_acu+t_dan+t_ene+t_ins+t_liv+t_lou+t_spe+t_tem+t_val
         z = (tot, x)
         maybe.append(z)
-        # print(songs_dic[x])
         maybe.sort()
+    songs_recommended = tkinter.Toplevel(window)
     for i in range(5):
-        print(maybe[i])
-    print("HELOOOO")
+        pair = maybe[i]
+        song = pair[1]
+        artist = songs_dic[song][1]
+        print(artist)
+        song_data = song + "  FROM  " + artist
+        # print(song_data)
+        lbl = tkinter.Label(songs_recommended, text=song_data)
+        lbl.pack()
+        # print(maybe[i])
+    # print("HELOOOO")
     
 
 window = tkinter.Tk() # create window
