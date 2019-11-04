@@ -179,12 +179,13 @@ def look4Songs(values):
         t_tem = (p_tem-tem)
         t_val = (p_val-val)
         tot = t_acu+t_dan+t_ene+t_ins+t_liv+t_lou+t_spe+t_tem+t_val
-        z = (tot, x)
+        z = (abs(tot), x)
         maybe.append(z)
         maybe.sort()
     songs_recommended = tkinter.Toplevel(window)
     for i in range(5):
         pair = maybe[i]
+        print(maybe[i])
         song = pair[1]
         artist = songs_dic[song][1]
         print(artist)
